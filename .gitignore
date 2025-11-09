@@ -1,0 +1,8 @@
+AI Model/.venv/
+
+# General Python ignores
+**/__pycache__/
+**/*.pyc
+
+# macOS junk
+AI Model/.DS_Store

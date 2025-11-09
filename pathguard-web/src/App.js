@@ -24,6 +24,7 @@ function App() {
           tabs ={logged_status ? tabs_logged : tabs_not_logged}></Tabs>
       </main>
       <Routes>
+        <Route path = "/" element = {<Home />}/>
         <Route path = "/home" element={<Home />} />
         <Route path = "/radar" element = {<Radar />}/>
       </Routes>

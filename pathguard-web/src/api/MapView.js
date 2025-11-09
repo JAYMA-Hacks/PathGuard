@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react';
 import Map, {Marker, Popup, NavigationControl, GeolocateControl} from 'react-map-gl';
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import mapboxgl from "mapbox-gl"
-import marker_data from '../data/markers_expanded.json'
+import mapboxgl from "mapbox-gl";
+import marker_data from '../data/markers_with_dates.json';
+
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -64,7 +66,7 @@ export default function MapView() {
                     accessToken: TOKEN,
                     mapboxgl,
                     marker: false,
-                    plaheolder: "Search Area...",
+                    placeholder: "Search Area...",
                 });
 
                 map.addControl(geocoder,"bottom-right");
@@ -79,23 +81,28 @@ export default function MapView() {
                 <NavigationControl position="top-right" />
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
-                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {e => {e.originalEvent.stopPropagation()}}>
+                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {e => {e.originalEvent.stopPropagation(); setSelected(m);}}>
                         <img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img>
                     </Marker>
                 ))}
 
-                {popup && (
-                    <Popup
-                    longitude={popup.lng}
-                    latitude={popup.lat}
-                    anchor="top"
-                    onClose={() => setPopup(null)}
+                {selected && (() => {
+                    const mdate = selected.date.split('-');
+                    return (
+                        <Popup
+                    longitude={selected.lng}
+                    latitude={selected.lat}
+                    onClose={() => setSelected(null)}
                     >
-                        <div>
-                            {popup.lat.toFixed(4)},{popup.lng.toFixed(4)}
-                        </div>
+                        <strong>
+                            CLASS: {selected.type} | {selected.val}
+                        </strong>
+                        <p>
+                            DATE: {months[mdate[3]]} {months[mdate[2]]}, {months[mdate[4]]}
+                        </p>
                     </Popup>
-                )}
+                    );
+                })}
             </Map>
             {cursorPos && (
                 <div style={{

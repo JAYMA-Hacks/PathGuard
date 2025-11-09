@@ -13,6 +13,8 @@ export default function MapView() {
     const [markers, setMarkers] = useState([]);
     const [filters, setFilters] = useState({ hazard: true, congestion: true })
     const [popup, setPopup] = useState(null);
+    const [cursorPos, setCursorPos] = useState(null);
+
     const onMapClick = useCallback(e => {
         const {lng, lat} = e.lngLat;
         setMarkers(m => [...m,{lng,lat, hazard_id: null}]);
@@ -50,6 +52,10 @@ export default function MapView() {
             mapStyle="mapbox://styles/mapbox/streets-v12"
             mapboxAccessToken={TOKEN}
             onClick={null}
+            onMouseMove = {(e) => {
+                const p = e.lngLat.wrap?.() ?? e.lngLat; // Keep lon within -180 -> 180
+                setCursorPos({ lng: p.lng, lat: p.lat});
+            }}
             onLoad={(ev) => {
                 const map = ev.target;
 
@@ -73,7 +79,7 @@ export default function MapView() {
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
                     <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {() => setPopup({lng: m.lng, lat: m.lat})}>
-                        <img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.hazard}.png`) : ''} width = "50"></img>
+                        <img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img>
                     </Marker>
                 ))}
 
@@ -90,6 +96,14 @@ export default function MapView() {
                     </Popup>
                 )}
             </Map>
+            {cursorPos && (
+                <div style={{
+                    position: 'absolute', left: 9, bottom: 35, zIndex: 2,
+                    padding: '6px 8px', background: 'rgba(0,0,0,0.6)', color: '#fff', borderRadius: 10, fontFamily: 'system-ui, sans-serif', fontSize: 12, pointerEvents: 'none'
+                }}>
+                    Longitude [{cursorPos.lng.toFixed(4)}] -- Latitude [{cursorPos.lat.toFixed(4)}]
+                </div>
+            )}
         </div>
     )
 }

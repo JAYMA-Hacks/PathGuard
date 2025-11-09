@@ -1,0 +1,6 @@
+ultralytics==8.3.34
+supervision==0.25.0
+opencv-python
+numpy
+requests
+python-dotenv

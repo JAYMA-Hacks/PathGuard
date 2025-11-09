@@ -27,6 +27,8 @@ button.active.radar {
 }
 
 .group {
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
 }

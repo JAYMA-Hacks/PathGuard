@@ -98,10 +98,10 @@ export default function MapView() {
             </Map>
             {cursorPos && (
                 <div style={{
-                    position: 'absolute', left: 10, bottom: 10, zIndex: 2,
-                    padding: '6px 8px', background: 'rgba(0,0,0,0.6)', color: '#fff', borderRadius: 6, fontFamily: 'system-ui, sans-serif', fontSize: 12, pointerEvents: 'none'
+                    position: 'absolute', left: 9, bottom: 35, zIndex: 2,
+                    padding: '6px 8px', background: 'rgba(0,0,0,0.6)', color: '#fff', borderRadius: 10, fontFamily: 'system-ui, sans-serif', fontSize: 12, pointerEvents: 'none'
                 }}>
-                    Longitude {cursorPos.lng.toFixed(5)} -- Latitude {cursorPos.lat.toFixed(5)}
+                    Longitude [{cursorPos.lng.toFixed(4)}] -- Latitude [{cursorPos.lat.toFixed(4)}]
                 </div>
             )}
         </div>

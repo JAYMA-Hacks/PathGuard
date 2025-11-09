@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Azonix";
+    src: url("../fonts/Azonix.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        padding: 24px;
+    }
+}
+
+.home { animation: fadeIn 2.5s ease-in-out forwards; opacity: 0; min-height: 100vh; background: linear-gradient(180deg,#ffffff,#a7f5ff); color:#000000; padding:2px; }
+.hero {   background: linear-gradient(90deg, #c5deff, #006aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0 0 6px;
+  font-size: clamp(2rem, 2vw, 3rem);  font-family: 'Azonix'; text-align:center; margin: 12px auto 16px; max-width: 800px; padding-top: 65px; }
+.tagline { font-family: 'Segoe UI'; font-size: 20px; color:#000000; max-width: 800px; margin: 2px auto 0; padding-bottom: 3px }
+.actions { margin-top: 12px; }
+.btn { display:inline-block; padding-top: 20px; margin-right:8px; padding:20px 18px; border-radius:30px; text-decoration:none; border:1px solid #000000; color:#000000;}
+.btn:hover { background: #FFFFFF; color: #000000 }
+.btn.primary { background:#0066ff; border-color:#000000; color:#ffffff; font-weight:700; }
+.features { max-width: 900px; margin: 24px auto 0; }
+.features h2 { margin: 0 0 8px; }
+.features ul { margin: 0; padding-left: 18px; }
+.features li { margin: 6px 0; line-height: 1.45; }
+.special { padding-bottom: 10px }

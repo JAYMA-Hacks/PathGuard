@@ -1,3 +1,4 @@
 [
-    { "id": 1, "lng": -114.0719, "lat": 51.0447, "type": "hazard", "hazard": "fallen_sign" }
+    { "id": 1, "lng": -114.0719, "lat": 51.0447, "type": "hazard", "val": "fallen_sign" },
+    { "id": 2, "lng": -114.1306, "lat": 51.0807, "type": "congestion", "val": "med"}
 ]

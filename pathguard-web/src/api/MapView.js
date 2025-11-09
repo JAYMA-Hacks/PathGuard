@@ -54,7 +54,7 @@ export default function MapView() {
             initialViewState={{longitude: -114.1345, latitude: 51.0788, zoom: 15}}
             mapStyle="mapbox://styles/mapbox/streets-v12"
             mapboxAccessToken={TOKEN}
-            onClick={null}
+            onClick={() => setSelected(null)}
             onMouseMove = {(e) => {
                 const p = e.lngLat.wrap?.() ?? e.lngLat; // Keep lon within -180 -> 180
                 setCursorPos({ lng: p.lng, lat: p.lat});
@@ -81,28 +81,23 @@ export default function MapView() {
                 <NavigationControl position="top-right" />
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
-                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {e => {e.originalEvent.stopPropagation(); setSelected(m);}}>
-                        <img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img>
+                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat}>
+                        <button type="button" style = {{background: 'none', border: 0, padding: 0, cursor: 'pointer'}} onClick = {(e) => {e.stopPropagation(); setSelected(m);}}><img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img></button>
                     </Marker>
                 ))}
-
-                {selected && (() => {
-                    const mdate = selected.date.split('-');
-                    return (
+                {selected && (
+                    
                         <Popup
                     longitude={selected.lng}
                     latitude={selected.lat}
                     onClose={() => setSelected(null)}
+                    closeOnClick = {false}
                     >
                         <strong>
                             CLASS: {selected.type} | {selected.val}
                         </strong>
-                        <p>
-                            DATE: {months[mdate[3]]} {months[mdate[2]]}, {months[mdate[4]]}
-                        </p>
                     </Popup>
-                    );
-                })}
+                )}
             </Map>
             {cursorPos && (
                 <div style={{

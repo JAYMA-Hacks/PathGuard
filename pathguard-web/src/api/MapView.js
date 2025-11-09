@@ -13,6 +13,7 @@ export default function MapView() {
     const [markers, setMarkers] = useState([]);
     const [filters, setFilters] = useState({ hazard: true, congestion: true })
     const [popup, setPopup] = useState(null);
+    const [selected, setSelected] = useState(null);
     const [cursorPos, setCursorPos] = useState(null);
 
     const onMapClick = useCallback(e => {
@@ -78,7 +79,7 @@ export default function MapView() {
                 <NavigationControl position="top-right" />
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
-                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {() => setPopup({lng: m.lng, lat: m.lat})}>
+                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat} onClick = {e => {e.originalEvent.stopPropagation()}}>
                         <img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img>
                     </Marker>
                 ))}

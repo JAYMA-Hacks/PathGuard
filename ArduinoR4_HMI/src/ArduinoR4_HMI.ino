@@ -1,10 +1,13 @@
+// r4_kiosk.ino (UNO R4 WiFi)
+// Sends hazard "self_report" to AWS HazardIngest on selection.
+
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include <WiFiS3.h>
 #include <ArduinoHttpClient.h>
-#include "secrets.h"   // local-only, not committed
+#include "secrets.h"   // create from secrets.h.example and DO NOT COMMIT
 
-// ---------------- Pins (your current wiring) ----------------
+// ---------------- Pins (your wiring) ----------------
 const int LCD_RS = 7;
 const int LCD_EN = 8;
 const int LCD_D4 = 9;
@@ -18,9 +21,7 @@ const int ECHO_PIN   = 3;
 const int JOY_Y      = A0;
 const int JOY_SW     = 4;
 const int ALERT_LED  = 13;
-
-// Optional physical “report” button for redundancy
-const int BTN_PIN    = 5;   // tie to GND on press, use INPUT_PULLUP
+const int BTN_PIN    = 5;   // optional extra button (GND when pressed)
 
 // ---------------- App constants ----------------
 const float SPEED_OF_SOUND = 0.0343; // cm/µs
@@ -31,10 +32,10 @@ const unsigned long SCROLL_INTERVAL = 800;
 const unsigned long JOY_COOLDOWN_MS = 300;
 const int THRESH_LOW = 300, THRESH_HIGH = 700;
 
-// Location / device metadata (hardcoded area as requested)
-const char* AREA_ID       = "heritage_park";
+// Location / device metadata
+const char* AREA_ID       = "Ucalgary_cross";
 const char* DEVICE_ID     = "kiosk-r4-01";
-const char* LOCATION_NAME = "Heritage Park – North";
+const char* LOCATION_NAME = "University of Calgary - Crosswalk";
 const float LAT = 51.0189;
 const float LON = -114.1594;
 
@@ -75,8 +76,8 @@ void wifiConnect() {
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   unsigned long t0 = millis();
-  while (WiFi.status() != WL_CONNECTED && (millis() - t0) < 15000) {
-    delay(250);
+  while (WiFi.status() != WL_CONNECTED && (millis() - t0) < 20000) {
+    delay(300);
     lcd.print(".");
   }
   netReady = (WiFi.status() == WL_CONNECTED);
@@ -91,7 +92,7 @@ void wifiConnect() {
   delay(800);
 }
 
-// Basic JSON escaper for quotes/backslashes
+// Basic JSON escaper (quotes/backslashes)
 String jsonEscape(const char* s) {
   String out;
   while (*s) {
@@ -102,15 +103,34 @@ String jsonEscape(const char* s) {
   return out;
 }
 
-// POST a hazard “self_report” to AWS
+// Low-level POST with explicit headers/body so we can add X-API-Key
+bool httpPostJson(const char* path, const String& body, int& statusOut, String& respOut) {
+  http.beginRequest();
+  http.post(path);
+  http.sendHeader("Host", AWS_HOST);
+  http.sendHeader("Content-Type", "application/json");
+  http.sendHeader("X-API-Key", AWS_API_KEY);
+  http.sendHeader("Connection", "close");
+  http.sendHeader("Content-Length", body.length());
+  http.beginBody();
+  http.print(body);
+  http.endRequest();
+
+  statusOut = http.responseStatusCode();
+  respOut   = http.responseBody();
+  return (statusOut >= 200 && statusOut < 300);
+}
+
+// POST a hazard “self_report” to HazardIngest
 bool postSelfReport(const char* category) {
   if (!netReady) return false;
 
-  // Build JSON (ts omitted so backend uses server time)
+  // Build JSON (omit ts so backend uses server time)
   String body = "{";
   body += "\"item_type\":\"self_report\",";
   body += "\"area_id\":\"" + String(AREA_ID) + "\",";
-  body += "\"source\":\"kiosk\",";
+  body += "\"source\":\"user_report\",";
+  body += "\"reported_by\":\"kiosk\",";
   body += "\"device_id\":\"" + String(DEVICE_ID) + "\",";
   body += "\"report_category\":\"" + jsonEscape(category) + "\",";
   body += "\"location_name\":\"" + jsonEscape(LOCATION_NAME) + "\",";
@@ -118,20 +138,18 @@ bool postSelfReport(const char* category) {
   body += "\"lon\":" + String(LON, 6);
   body += "}";
 
-  // HTTP request
-  http.beginRequest();
-  http.post(AWS_PATH, "application/json", body);
-  http.sendHeader("X-API-Key", AWS_API_KEY);
-  http.sendHeader("Connection", "close");
-  http.endRequest();
+  int status = 0; String resp;
+  bool ok = httpPostJson(AWS_PATH, body, status, resp);
 
-  int status = http.responseStatusCode();
-  // read and discard response (optional)
-  String resp = http.responseBody();
+  // one quick retry if not 2xx
+  if (!ok) {
+    delay(400);
+    ok = httpPostJson(AWS_PATH, body, status, resp);
+  }
 
-  Serial.print("[AWS] status="); Serial.println(status);
-  // 200 expected; 2xx treat as success
-  return (status >= 200 && status < 300);
+  Serial.print("[AWS] status="); Serial.print(status);
+  Serial.print(" resp="); Serial.println(resp);
+  return ok;
 }
 
 // ---------------- UI screens ----------------
@@ -189,10 +207,10 @@ void handleMenu(unsigned long now) {
     if (menuIndex >= HAZ_COUNT) menuIndex = HAZ_COUNT - 1;
     showMenu();
   }
+
   if (buttonPressed() || extraButtonPressed()) {
     lastHazard = menuIndex;
 
-    // “Sending…” feedback
     lcd.clear();
     lcd.setCursor(0,0); lcd.print("Sending...");
     lcd.setCursor(0,1); lcd.print(hazards[lastHazard]);
@@ -201,7 +219,7 @@ void handleMenu(unsigned long now) {
     if (!ok) {
       lcd.clear();
       lcd.setCursor(0,0); lcd.print("Send failed");
-      lcd.setCursor(0,1); lcd.print("Saved locally");
+      lcd.setCursor(0,1); lcd.print("Try again");
       delay(1200);
     }
     showThankYou();

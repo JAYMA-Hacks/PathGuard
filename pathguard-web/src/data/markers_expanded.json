@@ -1,0 +1,513 @@
+[
+  {
+    "id": 1,
+    "lng": -114.0719,
+    "lat": 51.0447,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 2,
+    "lng": -114.1306,
+    "lat": 51.0807,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 3,
+    "lng": -114.1375,
+    "lat": 51.0814,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 4,
+    "lng": -114.125495,
+    "lat": 51.073918,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 5,
+    "lng": -114.127376,
+    "lat": 51.084275,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 6,
+    "lng": -114.134764,
+    "lat": 51.070477,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 7,
+    "lng": -114.132345,
+    "lat": 51.070425,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 8,
+    "lng": -114.134834,
+    "lat": 51.077187,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 9,
+    "lng": -114.124995,
+    "lat": 51.072555,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 10,
+    "lng": -114.138942,
+    "lat": 51.073445,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 11,
+    "lng": -114.14431,
+    "lat": 51.071547,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 12,
+    "lng": -114.139329,
+    "lat": 51.070695,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 13,
+    "lng": -114.14338,
+    "lat": 51.084757,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 14,
+    "lng": -114.152729,
+    "lat": 51.088592,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 15,
+    "lng": -114.193085,
+    "lat": 50.920867,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 16,
+    "lng": -113.875911,
+    "lat": 51.156595,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 17,
+    "lng": -114.158811,
+    "lat": 51.090705,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 18,
+    "lng": -114.121928,
+    "lat": 50.962852,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 19,
+    "lng": -113.895338,
+    "lat": 51.094411,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 20,
+    "lng": -113.978349,
+    "lat": 50.949021,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 21,
+    "lng": -113.874191,
+    "lat": 51.092,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 22,
+    "lng": -113.932859,
+    "lat": 51.1328,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 23,
+    "lng": -113.947982,
+    "lat": 51.020349,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 24,
+    "lng": -114.243525,
+    "lat": 51.173941,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 25,
+    "lng": -114.111747,
+    "lat": 51.174364,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 26,
+    "lng": -114.171349,
+    "lat": 51.06841,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 27,
+    "lng": -113.910871,
+    "lat": 51.01982,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 28,
+    "lng": -114.066189,
+    "lat": 50.927273,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 29,
+    "lng": -114.019022,
+    "lat": 51.137624,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 30,
+    "lng": -114.117352,
+    "lat": 51.198836,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 31,
+    "lng": -113.997887,
+    "lat": 50.934366,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 32,
+    "lng": -114.225379,
+    "lat": 51.03043,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 33,
+    "lng": -113.881245,
+    "lat": 51.128589,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 34,
+    "lng": -113.933332,
+    "lat": 51.052299,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 35,
+    "lng": -114.054248,
+    "lat": 51.133588,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 36,
+    "lng": -114.262209,
+    "lat": 51.17873,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 37,
+    "lng": -113.918796,
+    "lat": 51.184085,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 38,
+    "lng": -113.878806,
+    "lat": 51.059812,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 39,
+    "lng": -113.891261,
+    "lat": 50.949538,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 40,
+    "lng": -113.967894,
+    "lat": 51.10696,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 41,
+    "lng": -114.09476,
+    "lat": 51.055273,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 42,
+    "lng": -114.134766,
+    "lat": 51.076493,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 43,
+    "lng": -114.241603,
+    "lat": 51.089331,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 44,
+    "lng": -113.926146,
+    "lat": 50.921257,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 45,
+    "lng": -114.184305,
+    "lat": 50.939694,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 46,
+    "lng": -113.947001,
+    "lat": 50.957123,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 47,
+    "lng": -114.100569,
+    "lat": 51.040107,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 48,
+    "lng": -114.230633,
+    "lat": 51.020786,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 49,
+    "lng": -114.170537,
+    "lat": 50.957063,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 50,
+    "lng": -114.158582,
+    "lat": 50.974942,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 51,
+    "lng": -114.230837,
+    "lat": 51.095643,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 52,
+    "lng": -114.203476,
+    "lat": 51.045692,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 53,
+    "lng": -114.204145,
+    "lat": 50.900647,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 54,
+    "lng": -114.1559,
+    "lat": 51.108977,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 55,
+    "lng": -114.18292,
+    "lat": 50.917545,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 56,
+    "lng": -114.249943,
+    "lat": 51.043037,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 57,
+    "lng": -114.237955,
+    "lat": 50.955747,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 58,
+    "lng": -114.10849,
+    "lat": 51.182479,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 59,
+    "lng": -114.022247,
+    "lat": 51.025767,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 60,
+    "lng": -114.00211,
+    "lat": 50.994255,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 61,
+    "lng": -114.08711,
+    "lat": 51.178705,
+    "type": "hazard",
+    "val": "pothole"
+  },
+  {
+    "id": 62,
+    "lng": -113.870618,
+    "lat": 51.198829,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 63,
+    "lng": -114.16392,
+    "lat": 51.179978,
+    "type": "congestion",
+    "val": "med"
+  },
+  {
+    "id": 64,
+    "lng": -114.156005,
+    "lat": 51.031455,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 65,
+    "lng": -114.058424,
+    "lat": 51.100359,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 66,
+    "lng": -113.894428,
+    "lat": 50.940287,
+    "type": "congestion",
+    "val": "high"
+  },
+  {
+    "id": 67,
+    "lng": -114.048711,
+    "lat": 50.981704,
+    "type": "congestion",
+    "val": "low"
+  },
+  {
+    "id": 68,
+    "lng": -113.995001,
+    "lat": 51.155874,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 69,
+    "lng": -114.233081,
+    "lat": 51.027073,
+    "type": "hazard",
+    "val": "flood"
+  },
+  {
+    "id": 70,
+    "lng": -113.961552,
+    "lat": 51.091134,
+    "type": "hazard",
+    "val": "icy"
+  },
+  {
+    "id": 71,
+    "lng": -114.049328,
+    "lat": 51.028306,
+    "type": "hazard",
+    "val": "fallen_sign"
+  },
+  {
+    "id": 72,
+    "lng": -114.051764,
+    "lat": 51.150379,
+    "type": "hazard",
+    "val": "debris"
+  },
+  {
+    "id": 73,
+    "lng": -114.146697,
+    "lat": 51.169694,
+    "type": "congestion",
+    "val": "low"
+  }
+]

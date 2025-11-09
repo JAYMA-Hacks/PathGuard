@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import Map, {Marker, Popup, NavigationControl, GeolocateControl} from 'react-map-gl';
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl"
-import marker_data from '../data/markers.json'
+import marker_data from '../data/markers_expanded.json'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "cd pathguard-web && react-scripts start",
-    "build": "cd pathguard-web && react-scripts build",
+    "build": "cd pathguard-web && npm run build",
     "test": "cd pathguard-web && react-scripts test",
     "eject": "cd pathguard-web && react-scripts eject",
     "dev": "cd pathguard-web && react-scripts dev"

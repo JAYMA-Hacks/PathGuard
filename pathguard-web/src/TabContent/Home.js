@@ -1,4 +1,3 @@
-import logo from "../assets/PathGuard_Logo.png";
 import "./Home.css";
 
 export default function Home() {
@@ -12,7 +11,7 @@ export default function Home() {
   </p>
 
   <div className="actions tagline">
-    <a href="/demo" className="btn primary">View Demo</a>
+    <a href="/radar" className="btn primary">View Radar</a>
   </div>
 </header>
 

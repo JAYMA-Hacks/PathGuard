@@ -1,6 +1,7 @@
 AI Model/.venv/
 AI Model/.env
 AI Model/local_metrics.csv
+ArduinoR4_HMI/src/secrets.h
 
 # General Python ignores
 **/__pycache__/
@@ -8,3 +9,4 @@ AI Model/local_metrics.csv
 
 # macOS junk
 AI Model/.DS_Store
+

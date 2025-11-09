@@ -1,4 +1,6 @@
 AI Model/.venv/
+AI Model/.env
+AI Model/local_metrics.csv
 
 # General Python ignores
 **/__pycache__/

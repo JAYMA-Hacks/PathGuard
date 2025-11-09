@@ -1,0 +1,14 @@
+.legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 12px;
+    padding-right: 25px;
+    gap: 30px;
+}
+
+.legend-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

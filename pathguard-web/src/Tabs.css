@@ -1,0 +1,45 @@
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    user-select: text;
+}
+button:focus {
+    outline: none;
+}
+button:hover {
+    color: #044baf;
+}
+button.active {
+    color: #0066ff;
+    font-weight: 600;
+}
+
+button.active.radar {
+    margin-left: auto;
+}
+
+.tab {
+    display: flex;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    left: 45%;
+    transform: translate(-20%,-47%);
+    height: 60px;
+    cursor: pointer;
+}
+
+.home {
+    text-align: center;
+    font-family: "Azonix";
+}

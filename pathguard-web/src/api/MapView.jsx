@@ -6,10 +6,16 @@ import marker_data from '../data/markers_with_dates.json';
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-const TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
+const TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 {/** Dictionary for hazard icons */}
+function getImageURL(folder, name) {
+    return new URL(`../assets/${folder}/${name}.png`, import.meta.url).href
+}
 
+function getImageURLsingle(name) {
+    return new URL(`../assets/${name}.png`, import.meta.url).href
+}
 
 export default function MapView() {
     const [markers, setMarkers] = useState([]);
@@ -82,7 +88,12 @@ export default function MapView() {
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
                     <Marker key={m.id} longitude = {m.lng} latitude = {m.lat}>
-                        <button type="button" style = {{background: 'none', border: 0, padding: 0, cursor: 'pointer'}} onClick = {(e) => {e.stopPropagation(); setSelected(m);}}><img src = {m.type === 'hazard' ? require(`../assets/hazards/${m.val}.png`) : require(`../assets/congestion/${m.val}.png`)} width = "50"></img></button>
+                        <button type="button" style = {{background: 'none', border: 0, padding: 0, cursor: 'pointer'}} onClick = {(e) => {e.stopPropagation(); setSelected(m);}}><img
+                            src = {m.type === 'hazard'
+                            ? getImageURL('hazards',m.val)
+                            : getImageURL('congestion',m.val)}
+                            width = "50">
+                        </img></button>
                     </Marker>
                 ))}
                 {selected && (

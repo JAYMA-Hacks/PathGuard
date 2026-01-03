@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import './Tabs.css'
 import logo from "./assets/PathGuard_Logo.png"
@@ -21,9 +21,9 @@ export default function Tabs({ tabs }) {
                 ))}
             </div>
             <div className = "group">
-                <a href='/home'> 
+                <Link to="/home"> 
                     <img src = {logo} className = "logo"></img>
-                </a>
+                </Link>
             </div>
         </div>
     )

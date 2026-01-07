@@ -9,8 +9,8 @@ extern void startCameraServer(void);
 #include "camera_pins.h"   // uses CAMERA_MODEL_* from build_flags or board_config.h
 
 // ---- Wi-Fi config ----
-const char* WIFI_SSID = "Abdul-iPhone";
-const char* WIFI_PASS = "Croatia789";
+const char* WIFI_SSID = "(INSERT WIFI/HOTSPOT NAME)";
+const char* WIFI_PASS = "(INSERT WIFI/HOTSPOT PASSWORD)";
 
 // If you prefer AP mode for quick testing, comment station() block and uncomment AP() block below.
 

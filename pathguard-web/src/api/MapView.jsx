@@ -2,7 +2,8 @@ import { useState, useCallback } from 'react';
 import Map, {Marker, Popup, NavigationControl, GeolocateControl} from 'react-map-gl';
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import mapboxgl from "mapbox-gl";
-import marker_data from '../data/markers_with_dates.json';
+import { GrabData } from './AWSApi';
+
 
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -17,6 +18,24 @@ function getImageURLsingle(name) {
     return new URL(`../assets/${name}.png`, import.meta.url).href
 }
 
+function truncateNumtoString(num) {
+    const n_string = num.toString();
+
+    const [integer,decimal] = n_string.split('.');
+
+    if(!decimal) {
+        return `${integer}.000000`;
+    }
+
+    const cleanDec = decimal.padEnd(6,'0').slice(0,6);
+
+    return `${integer}.${cleanDec}`;
+}
+
+function getUniqueID(lng, lat) {
+    return `${truncateNumtoString(lng)}${truncateNumtoString(lat)}`
+}
+
 export default function MapView() {
     const [markers, setMarkers] = useState([]);
     const [filters, setFilters] = useState({ hazard: true, congestion: true })
@@ -24,14 +43,21 @@ export default function MapView() {
     const [selected, setSelected] = useState(null);
     const [cursorPos, setCursorPos] = useState(null);
 
+    const { jsonData: marker_data, loading, error } = GrabData();
+
     const onMapClick = useCallback(e => {
         const {lng, lat} = e.lngLat;
         setMarkers(m => [...m,{lng,lat, hazard_id: null}]);
     }, []);
-    
-    const visible = marker_data.filter(m => filters[m.type]);
 
-    return (
+    
+
+    if(loading) return <div>Loading...</div>;
+    if(error) return <div style={{color: 'red'}}>Error: {error}</div>;
+    const visible = marker_data.filter(m => filters[m.type]);
+    
+    if(marker_data)
+        return (
         <div style={{height: '70vh', width: '100%', position: 'relative'}}>
             <div style ={{
                 position: 'absolute', zIndex: 1, top: 50, left: 12,
@@ -87,7 +113,7 @@ export default function MapView() {
                 <NavigationControl position="top-right" />
                 <GeolocateControl position="top-left" />
                 {visible.map((m) => (
-                    <Marker key={m.id} longitude = {m.lng} latitude = {m.lat}>
+                    <Marker key={getUniqueID(m.lng,m.lat)} longitude = {m.lng} latitude = {m.lat}>
                         <button type="button" style = {{background: 'none', border: 0, padding: 0, cursor: 'pointer'}} onClick = {(e) => {e.stopPropagation(); setSelected(m);}}><img
                             src = {m.type === 'hazard'
                             ? getImageURL('hazards',m.val)

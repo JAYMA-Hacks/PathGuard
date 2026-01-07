@@ -3,6 +3,8 @@ AI Model/.env
 AI Model/local_metrics.csv
 ArduinoR4_HMI/src/secrets.h
 
+
+
 # General Python ignores
 **/__pycache__/
 **/*.pyc
